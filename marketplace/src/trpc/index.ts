@@ -5,11 +5,11 @@ import { publicProcedure, router } from "./trpc";
 import { getPayloadClient } from "../get-payload";
 //import { paymentRouter } from "./payment-router";
 import { QueryValidator } from "../lib/validators/query-validators";
-import { paymentRouter } from "./payment-router";
+//import { paymentRouter } from "./payment-router";
 
 export const appRouter = router({
   auth: authRouter,
-  payment: paymentRouter,
+ // payment: paymentRouter,
 
 
 // fetching product data from the database,only approve products

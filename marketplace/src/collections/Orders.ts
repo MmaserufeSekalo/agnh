@@ -53,10 +53,5 @@ export const Orders: CollectionConfig = {
       required: true,
       hasMany: true,
     },
-    {
-      name: "delivery address",
-      type: "textarea",
-      required: true,
-    },
   ],
 };

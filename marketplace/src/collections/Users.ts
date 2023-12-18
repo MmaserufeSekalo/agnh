@@ -33,7 +33,7 @@ export const Users: CollectionConfig = {
       ],
     },
     {
-      name: "delivery address",
+      name: "delivery_address",
       type: "textarea",
       required: true,
     

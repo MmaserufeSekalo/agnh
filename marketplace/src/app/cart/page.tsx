@@ -10,32 +10,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
+import CheckoutPage from "./checkout";
 const Page = () => {
   const { items, removeItem } = useCart();
-
-  const router = useRouter();
-
-  const { mutate: createCheckoutSession, isLoading } =
-    trpc.payment.createSession.useMutation({
-      onSuccess: ({ url }) => {
-        if (url) router.push(url);
-      },
-    });
-
   const productIds = items.map(({ product }) => product.id);
-
   const [isMounted, setIsMounted] = useState<boolean>(false);
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
   const cartTotal = items.reduce(
-    (total, { product }) => total + (product.price-(product.price*(product.discount/100))),
+    (total, { product }) =>
+      total + (product.price - product.price * (product.discount / 100)),
     0
   );
-
-  const fee = 80;
+  const fee = 1;
+  
 
   return (
     <div className="bg-white">
@@ -43,7 +32,6 @@ const Page = () => {
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           Shopping Cart
         </h1>
-
         <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
           <div
             className={cn("lg:col-span-7", {
@@ -52,7 +40,7 @@ const Page = () => {
             })}
           >
             <h2 className="sr-only">Items in your shopping cart</h2>
-{/**when the cart is empty */}
+            {/**when the cart is empty */}
             {isMounted && items.length === 0 ? (
               <div className="flex h-full flex-col items-center justify-center space-y-1">
                 <div
@@ -72,7 +60,6 @@ const Page = () => {
                 </p>
               </div>
             ) : null}
-
             <ul
               className={cn({
                 "divide-y divide-gray-200 border-b border-t border-gray-200":
@@ -101,7 +88,7 @@ const Page = () => {
                           ) : null}
                         </div>
                       </div>
-{/**product information w/ clickable link to the product detail page */}
+
                       <div className="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
                         <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
                           <div>
@@ -126,7 +113,6 @@ const Page = () => {
                               {formatPrice(product.price)}
                             </p>
                           </div>
-{/**remove item from cart */}
                           <div className="mt-4 sm:mt-0 sm:pr-9 w-20">
                             <div className="absolute right-0 top-0">
                               <Button
@@ -151,10 +137,8 @@ const Page = () => {
                 })}
             </ul>
           </div>
-
           <section className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
             <h2 className="text-lg font-medium text-gray-900">Order summary</h2>
-
             <div className="mt-6 space-y-4">
               <div className="flex items-center justify-between">
                 <p className="text-sm text-gray-600">Subtotal</p>
@@ -166,10 +150,9 @@ const Page = () => {
                   )}
                 </p>
               </div>
-
               <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                 <div className="flex items-center text-sm text-muted-foreground">
-                  <span>Flat shipping fee</span>
+                  <span>Flat Transaction Fee</span>
                 </div>
                 <div className="text-sm font-medium text-gray-900">
                   {isMounted ? (
@@ -179,7 +162,6 @@ const Page = () => {
                   )}
                 </div>
               </div>
-
               <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                 <div className="text-base font-medium text-gray-900">
                   Order Total
@@ -196,14 +178,12 @@ const Page = () => {
 
             <div className="mt-6">
               <Button
-                disabled={items.length === 0 || isLoading}
-                onClick={() => createCheckoutSession({ productIds })}
+                disabled={items.length === 0 }
+                onClick={() => CheckoutPage}
                 className="w-full"
                 size="lg"
               >
-                {isLoading ? (
-                  <Loader2 className="w-4 h-4 animate-spin mr-1.5" />
-                ) : null}
+              
                 Checkout
               </Button>
             </div>
@@ -213,5 +193,4 @@ const Page = () => {
     </div>
   );
 };
-
 export default Page;

@@ -1,11 +1,9 @@
-import { BeforeChangeHook } from "payload/dist/globals/config/types";
+
 import { PRODUCT_CATEGORIES } from "../../config";
 import { CollectionConfig } from "payload/types";
-import { Product } from "@/payload-types";
 
-const addUser:BeforeChangeHook<Product> = async ({re,data}) =>{
-const user = req.user
-}
+
+
 
 //type annotation lets us know what can be passed in to the function
 export const Products: CollectionConfig = {
@@ -14,7 +12,6 @@ export const Products: CollectionConfig = {
     useAsTitle: "name",
   },
   access: {},
-  hooks:{beforeChange:[addUser]},
   //table fields
   fields: [
     {

@@ -20,7 +20,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["next/types"]
   },
   "include": [
     "next-env.d.ts",
@@ -29,6 +30,6 @@
     ".next/types/**/*.ts",
     "src/lib/stripe.ts",
     "src/trpc/payment-router.js"
-  ],
+, "src/app/cart/checkout.js", "src/components/PaystackButton.js"  ],
   "exclude": ["node_modules"]
 }
