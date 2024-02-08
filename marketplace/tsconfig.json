@@ -32,4 +32,4 @@
     "src/trpc/payment-router.js"
 , "src/app/cart/checkout.js", "src/components/PaystackButton.js"  ],
   "exclude": ["node_modules"]
-}
+  }

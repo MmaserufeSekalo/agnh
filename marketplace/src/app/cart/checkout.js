@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/trpc/client";
 import { useRouter } from "next/router";
-import PayButton from "../components/PaystackButton";
+
 
 
 const CheckoutPage = () => {
@@ -83,12 +83,12 @@ const CheckoutPage = () => {
             onChange={(e) => setPhone(e.target.value)}
           />
         </form>
-        <PayButton
+        {/*<PayButton
           email={email}
           amount={cartTotal + fee}
           name={name}
           phone={phone}
-        />
+  />*/}
       </div>
     </div>
   );
