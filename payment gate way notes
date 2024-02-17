@@ -1,0 +1,39 @@
+https://www.youtube.com/watch?v=vZ4KJPFuse0&t=77s
+//the link above will take you to a youtube video that I think could help (I could not move forward from this point)
+
+https://paystack.com/docs/api/transaction/
+
+where I got this code (supposed to go into server.ts line 25): const https = require('https')
+
+const params = JSON.stringify({
+  "email": "customer@email.com",
+  "amount": "20000"
+})
+
+const options = {
+  hostname: 'api.paystack.co',
+  port: 443,
+  path: '/transaction/initialize',
+  method: 'POST',
+  headers: {
+    Authorization: 'Bearer SECRET_KEY',
+    'Content-Type': 'application/json'
+  }
+}
+
+const req = https.request(options, res => {
+  let data = ''
+
+  res.on('data', (chunk) => {
+    data += chunk
+  });
+
+  res.on('end', () => {
+    console.log(JSON.parse(data))
+  })
+}).on('error', error => {
+  console.error(error)
+})
+
+req.write(params)
+req.end()
