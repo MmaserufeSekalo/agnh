@@ -42,15 +42,13 @@ export const getPayloadClient = async ({
 }: Args = {}): Promise<Payload> => {
 
   // this is important for the sign in auth
-  if (!process.env.PAYLOAD_SECRET) {
-    throw new Error("PAYLOAD_SECRET is missing");
-  }
+ 
 
   if (cached.client) {
     return cached.client;
   }
 
-  if (!cached.promise) {
+ /* if (!cached.promise) {
     cached.promise = payload.init({
       email: {
         transport: transporter,

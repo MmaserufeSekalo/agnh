@@ -9,7 +9,7 @@ import { QueryValidator } from "../lib/validators/query-validators";
 
 export const appRouter = router({
   auth: authRouter,
- payment: paymentRouter,
+
 
 
 // fetching product data from the database,only approve products
