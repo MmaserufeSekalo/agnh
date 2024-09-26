@@ -10,7 +10,7 @@ import { paymentRouter } from "./payment.router";
 
 export const appRouter = router({
   auth: authRouter,
- payment: paymentRouter,
+
 
 
 // fetching product data from the database,only approve products
