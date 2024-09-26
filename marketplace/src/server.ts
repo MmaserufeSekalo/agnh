@@ -47,27 +47,7 @@ const start = async () => {
       },
     };
 
-    const reqPaystack = https
-      .request(options, (response) => {
-        let data = "";
-
-        response.on("data", (chunk) => {
-          data += chunk;
-        });
-
-        response.on("end", () => {
-          response.send(data)
-          console.log(JSON.parse(data));
-          response.json(JSON.parse(data)); // Send response back to the client
-        });
-      })
-      .on("error", (error) => {
-        console.error(error);
-        response.status(500).json({ error: "Internal Server Error" }); // Handle error and send response back to the client
-      });
-
-    reqPaystack.write(params);
-    reqPaystack.end();
+    
   });
 
   app.use(
