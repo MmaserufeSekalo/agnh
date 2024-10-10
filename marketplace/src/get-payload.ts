@@ -1,17 +1,15 @@
 //database client that is used in the entire application, optimised resources by caching. this, nodemon, tsconfig.server.json, payload.config.ts and get-payload.ts are for the admin dashboard
 
-import dotenv from "dotenv"; // .env where sensitve variables ar stored
-import nodemailer from "nodemailer"
+import dotenv from "dotenv";
 import path from "path";
 import type { InitOptions } from "payload/config";
 import payload, { Payload } from "payload";
-
+import nodemailer from "nodemailer";
 
 dotenv.config({
   path: path.resolve(__dirname, "../.env"),
 });
 
-/*define transport*/
 const transporter = nodemailer.createTransport({
   host: "smtp.resend.com",
   secure: true,
@@ -22,7 +20,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// to get our client, to save resources on this
 let cached = (global as any).payload;
 
 if (!cached) {
@@ -35,26 +32,24 @@ if (!cached) {
 interface Args {
   initOptions?: Partial<InitOptions>;
 }
-//recieves parameters
 
 export const getPayloadClient = async ({
   initOptions,
 }: Args = {}): Promise<Payload> => {
-
-  // this is important for the sign in auth
- 
+  if (!process.env.PAYLOAD_SECRET) {
+    throw new Error("PAYLOAD_SECRET is missing");
+  }
 
   if (cached.client) {
     return cached.client;
   }
 
- /* if (!cached.promise) {
+  if (!cached.promise) {
     cached.promise = payload.init({
       email: {
         transport: transporter,
-        //to be added when there is a custom domain
-        fromAddress: "onboarding@resend.dev" ,
-        fromName: "CatCart",
+        fromAddress: "hello@joshtriedcoding.com",
+        fromName: "DigitalHippo",
       },
       secret: process.env.PAYLOAD_SECRET,
       local: initOptions?.express ? false : true,
