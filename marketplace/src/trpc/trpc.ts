@@ -1,4 +1,4 @@
-//api server
+//api server, creating session for checkout page(14) for logged in user, if not throw an error
 
 import { User } from "@/payload-types";
 import { ExpressContext } from "@/server";
