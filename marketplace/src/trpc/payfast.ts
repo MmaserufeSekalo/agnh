@@ -9,9 +9,9 @@ interface PayFastConfig {
 }
 
 const payfastConfig: PayFastConfig = {
-  merchantId: "19062303",
-  merchantKey: "lh3fpo7x31s6f",
-  passphrase: "/1nnaG3tM8h3r3", // Optional: can be omitted if not using secure passphrase
+  merchantId: "in the env",
+  merchantKey: "in the env",
+  passphrase: "in the env", // Optional: can be omitted if not using secure passphrase
   sandbox: true, // Set to false for live transactions
 };
 
